@@ -4,6 +4,7 @@
  * @return {number[]}
  * time: O(n)
  * space: O(n)
+ * 正向遍历和反向遍历
  */
 var shortestToChar = function(s, c) {
   let res = [];
