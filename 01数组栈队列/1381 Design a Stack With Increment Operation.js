@@ -43,6 +43,7 @@ CustomStack.prototype.increment = function(k, val) {
  */
 
 /**
+ * 栈
  * time: O(n)
  * space: O(n)
 */

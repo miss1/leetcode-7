@@ -2,6 +2,7 @@
  * @param {number[]} pushed
  * @param {number[]} popped
  * @return {boolean}
+ * 栈
  * time: O(n)
  * space: O(n)
  */

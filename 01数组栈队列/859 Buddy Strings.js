@@ -2,6 +2,7 @@
  * @param {string} s
  * @param {string} goal
  * @return {boolean}
+ * 数组
  * time: O(n)
  * space: O(n)
  */

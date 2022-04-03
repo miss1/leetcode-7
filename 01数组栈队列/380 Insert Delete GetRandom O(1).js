@@ -54,6 +54,7 @@ RandomizedSet.prototype.getRandom = function() {
 /**
  * time: O(1)
  * space: O(n)
+ * 数组
  * 利用数组记录值，用map记录值对应的下标，删除的时候将数组最后一位放到要删除的值的下标位置，再将最后一位pop出去
  */
 

@@ -2,6 +2,7 @@
  * @param {number[]} num
  * @param {number} k
  * @return {number[]}
+ * 数组
  * time: O(n)
  * space: O(n)
  */

@@ -1,6 +1,7 @@
 /**
  * @param {string} s
  * @return {string}
+ * 栈
  * time: O(n*m) n: s.length, m: s中最大的整数
  * space: O(n)
  */

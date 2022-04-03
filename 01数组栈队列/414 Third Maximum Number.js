@@ -1,6 +1,7 @@
 /**
  * @param {number[]} nums
  * @return {number}
+ * 数组
  * time: O(n)
  * space: O(1)
  */
