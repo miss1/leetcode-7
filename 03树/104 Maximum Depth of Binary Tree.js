@@ -13,7 +13,7 @@ var maxDepth = function(root) {
     if (!root.left && !root.right) num = Math.max(num, level);
     preOrder(root.left, level + 1);
     preOrder(root.right, level + 1);
-  }
+  };
   preOrder(root, 1);
   return num;
 };
