@@ -3,7 +3,7 @@
  * @param {number[]} inorder
  * @return {TreeNode}
  * time: O(n)
- * space: O(n)
+ * space: O(h), h为树的高度
  * 从前序遍历中获取根节点，从中序遍历中获取左右子树的起始结束下标，递归
  */
 var buildTree = function(preorder, inorder) {

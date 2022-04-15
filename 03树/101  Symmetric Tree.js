@@ -2,7 +2,7 @@
  * @param {TreeNode} root
  * @return {boolean}
  * time: O(n)
- * space: O(n)
+ * space: O(h) h为树的高度
  * 树围绕中心对称，说明left.left = right.right; left.right = right.left;
  * 递归比较节点的左右节点即可
  */

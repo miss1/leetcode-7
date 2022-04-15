@@ -3,7 +3,7 @@
  * @param {TreeNode} q
  * @return {boolean}
  * time: O(n)
- * space: O(n)
+ * space: O(h), h为树的高度
  * 同时前序遍历两个二叉树，比较两个treeNode的值
  * 不相等返回false，如果两个node同时为空，说明完全相等，返回true
  */

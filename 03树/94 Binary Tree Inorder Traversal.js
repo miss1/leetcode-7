@@ -2,7 +2,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  * time: O(n)
- * space: O(n)
+ * space: O(h), h为树的高度
  * 递归，中序遍历
  */
 var inorderTraversal = function(root) {

@@ -2,7 +2,7 @@
  * @param {TreeNode} root
  * @return {boolean}
  * time: O(n)
- * space: O(n)
+ * space: O(h), h为树的高度
  * 先序遍历，返回每个节点的高度（节点高度等于左子树高度与右子树高度的最大值）
  * 比较左右子树的高度，超过1说明是false
  */

@@ -2,7 +2,7 @@
  * @param {TreeNode} root
  * @return {number}
  * time: O(n)
- * space: O(n)
+ * space: O(h), h为树的高度
  * 先序遍历，记录每个节点所在的层数level
  * 当遍历到叶子节点时，取当前叶子节点的层数，和已记录的最大层数num比较，存储较大值
  */

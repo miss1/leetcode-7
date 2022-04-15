@@ -39,7 +39,7 @@ function TreeNode(val, left, right) {
 
 ![binary tree](./binary-tree.png)
 
-前序遍历
+前序遍历（DFS）
 * 访问当前节点
 * 遍历左子树
 * 遍历右子树
