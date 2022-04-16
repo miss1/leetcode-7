@@ -149,6 +149,22 @@ const postorderTraversal = (root) => {
 * 更多时候使用队列的先进先出特性实现
 * 比较适合找 *最短路径/距离* 和 *某一个距离的目标*
 ```
+// 记录当前访问层级
+const bfs = (root) => {
+  let currentLevel = [root];
+  while(currentLevel.length > 0) {
+    let nextLevel = [];
+    for (let i = 0; i < currentLevel.length; i++) {
+      console.log(currentLevel[i].val);
+      if (currentLevel[i].left) nextLevel.push(currentLevel[i].left);
+      if (currentLevel[i].right) nextLevel.push(currentLevel[i].right);
+    }
+    currentLevel = nextLevel;
+  }
+};
+```
+```
+// 队列先进先出
 const bfs = (root) => {
   const q = [root];
   while (q.length > 0) {
