@@ -44,6 +44,7 @@ function TreeNode(val, left, right) {
 * 遍历左子树
 * 遍历右子树
 ```
+// 递归
 const preorder = (root) => {
   if (!root) return;
   console.log(root.val);
@@ -53,12 +54,33 @@ const preorder = (root) => {
 
 // FBADCEGIH
 ```
+```
+// 迭代，使用颜色标记节点状态，新节点为white, 未访问的节点为gray
+// 白色入栈，灰色将值输出
+// 入栈顺序为遍历顺序的反向，先序，中左右 -> 右左中
+const preorderTraversal = (root) => {
+  let white = 0, gray = 1;
+  let stack = [{color: white, node: root}];
+  while (stack.length > 0) {
+    const {color, node} = stack.pop();
+    if (!node) continue;
+    if (color === white) {
+      stack.push({color: white, node: node.right});
+      stack.push({color: white, node: node.left});
+      stack.push({color: gray, node: node});
+    } else {
+      console.log(node.val)
+    }
+  }
+};
+```
 
 中序遍历
 * 遍历左子树
 * 访问当前节点
 * 遍历右子树
 ```
+// 递归
 const inorder = (root) => {
   if (!root) return;
   inorder(root.left);
@@ -68,12 +90,31 @@ const inorder = (root) => {
 
 // ABCDEFGHI
 ```
+```
+// 迭代，入栈顺序 左中右 -> 右中左
+const inorderTraversal = (root) => {
+  let white = 0, gray = 1;
+  let stack = [{color: white, node: root}];
+  while (stack.length > 0) {
+    const {color, node} = stack.pop();
+    if (!node) continue;
+    if (color === white) {
+      stack.push({color: white, node: node.right});
+      stack.push({color: gray, node: node});
+      stack.push({color: white, node: node.left});
+    } else {
+      console.log(node.val)
+    }
+  }
+};
+```
 
 后续遍历
 * 遍历左子树
 * 遍历右子树
 * 访问当前节点
 ```
+// 递归
 const postorder = (root) => {
   if (!root) return;
   postorder(root.left);
@@ -83,11 +124,30 @@ const postorder = (root) => {
 
 // ACEDBHIGF
 ```
+```
+// 迭代，入栈顺序，左右中 -> 中右左
+const postorderTraversal = (root) => {
+  let white = 0, gray = 1;
+  let stack = [{color: white, node: root}];
+  while (stack.length > 0) {
+    const {color, node} = stack.pop();
+    if (!node) continue;
+    if (color === white) {
+      stack.push({color: gray, node: node});
+      stack.push({color: white, node: node.right});
+      stack.push({color: white, node: node.left});
+    } else {
+      console.log(node.val)
+    }
+  }
+};
+```
 
 层序遍历（BFS）
 * 先遍历树的第一层，再遍历树的第二层，以此类推
 * 可使用DFS并记录当前访问层级的方式实现
 * 更多时候使用队列的先进先出特性实现
+* 比较适合找 *最短路径/距离* 和 *某一个距离的目标*
 ```
 const bfs = (root) => {
   const q = [root];
