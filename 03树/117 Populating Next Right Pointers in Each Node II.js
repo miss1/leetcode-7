@@ -4,7 +4,7 @@
  * BFS, 层序遍历，用队列记录每一层的所有节点，遍历每一层节点，将前一个next指向下一个
  * time: O(n)
  * space: O(q), q为队列长度
- * 这一解法也是117题的答案
+ * 因为每一个节点的子节点数不确定，不适合用深度遍历解
  */
 var connect = function(root) {
   if (!root) return root;
@@ -19,26 +19,5 @@ var connect = function(root) {
     }
     currentLevel = nextLevel;
   }
-  return root;
-};
-
-
-/**
- * @param {Node} root
- * @return {Node}
- * DFS, 先序遍历，将每一个节点的left.next指向right，right.next指向当前节点的next.left
- * time: O(n)
- * space: O(h), h为树的高度
- */
-var connect2 = function(root) {
-  if(root) root.next = null;
-  let preOrder = function(root) {
-    if(!root) return;
-    if(root.left) root.left.next = root.right;
-    if(root.right) root.right.next = root.next ? root.next.left : null;
-    preOrder(root.left);
-    preOrder(root.right);
-  };
-  preOrder(root);
   return root;
 };
