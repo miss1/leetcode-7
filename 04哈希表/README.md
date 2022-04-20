@@ -51,6 +51,10 @@ const set3 = new Set([...set].filter(item => set2.has(item)));
 
 // 求差集
 const set4 = new Set([...set].filter(item => !set2.has(item)));
+
+// 去重
+const arr = [1, 1, 2, 2];
+const arr2 = [...new Set(arr)]; // [1, 2]
 ```
 
 常见题目类型
