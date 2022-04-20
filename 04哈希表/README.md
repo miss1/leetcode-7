@@ -18,6 +18,10 @@ m.has('a');
 // 删
 m.delete('a');
 m.clear();
+
+// 遍历
+for (let item of map) console.log(item) // item => [key, value]
+map.forEach((val,key) => {console.log(val, key)})
 ```
 
 Set
