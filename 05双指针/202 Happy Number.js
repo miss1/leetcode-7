@@ -27,3 +27,29 @@ var isHappy = function(n) {
   }
   return fast === 1;
 };
+
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ * 循环计算，将得到的值存储到set中，直到计算得到重复的值，最后判断set中是否包含1
+ * time: O(n)
+ * space: O(n)
+ */
+var isHappy2 = function(n) {
+  const getSquares = function(n) {
+    let sum = 0;
+    while (n !== 0) {
+      let a = n % 10;
+      sum += a * a;
+      n = Math.floor(n / 10);
+    }
+    return sum;
+  };
+  let set = new Set();
+  while (!set.has(n)) {
+    set.add(n);
+    n = getSquares(n);
+  }
+  return set.has(1);
+};
