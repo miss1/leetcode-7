@@ -51,10 +51,10 @@ function insert(nums) {
  * 分治，将数组不断分为两半，直到无法分割，再两两合并
  * time: O(nlog(n))
  * space: O(n)
+ * 具体解法看 912题
  */
 function merge(nums) {
   if (nums.length === 1) return nums;
-
 }
 
 /**
