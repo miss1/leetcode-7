@@ -41,7 +41,7 @@ function binarySearch(nums, target) {
 ### 局部有序的情况
 33, 81
 
-### 二位数组
+### 二维数组
 74，153
 
 ### 二叉树
