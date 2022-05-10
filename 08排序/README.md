@@ -27,3 +27,8 @@
 * time: O(upper + lower + n)
 * space: O(upper + lower + n)
 
+### js的sort方法
+* v8引擎中对sort方法提供两种排序算法
+* 长度小于10时，采用插入排序
+* 长度大于10时，采用快速排序
+
