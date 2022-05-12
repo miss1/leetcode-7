@@ -32,6 +32,34 @@ function dfs(i) {
 }
 ```
 
+二维网格的dfs
+* 小岛问题
+* 从一个或多个入口DFS即可
+* DFS的时候，往四个方向延申
+
+模板
+```
+let arr = [[1,2,3],[4,5,6],[7,8,9]]
+let set = new Set();
+function dfs(i, j) {
+  if (i < 0 || i >= arr.length || j >= arr[0].length || j < 0) return;
+  if (set.has(i + ',' + j)) return;
+  // 已访问的添加标记
+  console.log(arr[i][j]);
+  set.add(i + ',' + j);
+  // 下
+  dfs(i + 1, j);
+  // 上
+  dfs(i - 1, j);
+  // 右
+  dfs(i, j + 1);
+  // 左
+  dfs(i, j - 1);
+}
+
+dfs(0,0);
+```
+
 常用技巧
 * 前序遍历和后序遍历，注意使用场景
 * 迭代加深。通过设定深度阙值，在递归树比较深的时候主动退出
