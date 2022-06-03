@@ -23,11 +23,12 @@
 ```
 N, M, W, V
 dp[0..M] = 0
-
-for i in 1...N:
-    for j in M...W[i]: # 这里必须逆向枚举，如果正向的话i状态会覆盖掉i-1的状态
+let dp = new Array(m + 1).fill(0);
+for (let i = 1; i <= n; i++) {
+    for (let j = m; j >= w[i]; j--) { // 这里必须逆向枚举，因为当前计算需要dp[i - 1]对应的其他状态来计算
         dp[j] = max(dp[j], dp[j - W[i]] + V[i])
-
+    }
+}
 return dp[M]
 ```
 
@@ -44,12 +45,12 @@ return dp[M]
 
 ```
 N, M, W, V
-dp[0..M] = 0
-
-for i in 1...N:
-    for j in W[i]...M: # 这里必须正向枚举，因为当前计算需要dp[i]对应的其他状态来计算
-        dp[j] = max(dp[j], dp[j - W[i]] + V[i]
-
+let dp = new Array(m + 1).fill(0);
+for (let i = 1; i <= n; i++) {
+    for (let j = w[i]; j <= m; j++) { // 这里必须正向枚举，因为当前计算需要dp[i]对应的其他状态来计算
+        dp[j] = max(dp[j], dp[j - W[i]] + V[i])
+    }
+}
 return dp[M]
 ```
 
@@ -65,12 +66,18 @@ return dp[M]
 ```
 N, M, W, V, H
 dp[0..M] = 0
-
-for i in 1...N:
-    for j in M...W[i]: # 这里必须逆向枚举，因为当前计算需要dp[i - 1]对应的其他状态来计算
-        for h in 0...min(H[i], j / W[i]):
+let dp = new Array(m + 1).fill(0);
+for (let i = 1; i <= n; i++) {
+    for (let j = m; j >= w[i]; j--) { // 这里必须逆向枚举，因为当前计算需要dp[i - 1]对应的其他状态来计算
+        for (let h = 0; h <= min(H[i], j / W[i]); h++) {
             dp[j] = max(dp[j], dp[j - h * W[i]] + h * V[i])
-
+        }
+    }
+}
 return dp[M]
 ```
+
+### 恰好装满 VS 可以不装满
+* 恰好装满：只需初始化 dp[0] 为0
+* 可以不装满：全部初始化成一样的
 
