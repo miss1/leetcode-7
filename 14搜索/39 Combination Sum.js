@@ -2,6 +2,7 @@
  * @param {number[]} candidates
  * @param {number} target
  * @return {number[][]}
+ * 组合
  * 回溯。先排序是为了去掉重复的答案
  * time: O(n) n: 答案的总长度
  * space: O(target) 递归栈的深度
