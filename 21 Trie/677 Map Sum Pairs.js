@@ -10,6 +10,7 @@ var MapSum = function() {
  * sum字段记录以当前节点结束的前缀的所有值的总和；第一遍遍历key判断出是否需要覆盖之前的key，记录下被覆盖的key的val
  * 计算每个字符的sum时，要先减去被覆盖的val值再加上当前的val
  * time: O(len(key))
+ * space: O(26 * m) m为所有key的字符总个数
  */
 MapSum.prototype.insert = function(key, val) {
   let node = this.root;
