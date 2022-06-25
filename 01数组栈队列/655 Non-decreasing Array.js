@@ -1,7 +1,7 @@
 /**
  * @param {number[]} nums
  * @return {boolean}
- * 要保证数组是非递减的。便利数组，当nums[i]小于前一个数时，有两种选择，改变nums[i-1]的值或者改变nums[i]的值
+ * 要保证数组是非递减的。遍历数组，当nums[i]小于前一个数时，有两种选择，改变nums[i-1]的值或者改变nums[i]的值
  * time: O(n)
  * space: O(1)
  */
