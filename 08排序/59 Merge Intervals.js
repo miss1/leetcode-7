@@ -47,3 +47,29 @@ var merge = function(intervals) {
   };
   return mergeSort(0, intervals.length - 1);
 };
+
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ * 直接用sort方法排序，再遍历合并重叠区间
+ * time: O(nlogn)
+ * space: O(n)
+ */
+var merge2 = function(intervals) {
+  if (intervals.length <= 1) return intervals;
+  intervals.sort((a, b) => a[0] - b[0]);
+  let res = [intervals[0]];
+  for (let j = 1; j < intervals.length; j++) {
+    let pre = res.pop(), cur = intervals[j];
+    if (cur[0] > pre[1]) {
+      res.push(pre);
+      res.push(cur);
+    } else if (cur[1] > pre[1]) {
+      res.push([pre[0], cur[1]]);
+    } else {
+      res.push(pre);
+    }
+  }
+  return res;
+};
+
