@@ -28,3 +28,25 @@ var deleteAndEarn = function(nums) {
   }
   return Math.max(a, b);
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 空间换时间。先计算出nums中的最大值max，再新建一个长度为max+1的数组dp，用于存储nums中对应数字为下标的值。
+ * 类似于桶排序，这样就不用做排序了
+ * 接下来就是跟198题一模一样了，f(n) = Math.max(f(n - 2) + nums[n], f(n - 1))
+ * time: O(n)
+ * space: O(n) 因为1 <= nums[i] <= 10^4 且 1 <= nums.length <= 2 * 10^4
+ */
+var deleteAndEarn2 = function(nums) {
+  let max = 0;
+  for (let i = 0; i < nums.length; i++) max = Math.max(max, nums[i]);
+  let dp = new Array(max+1).fill(0);
+  for (let i = 0; i < nums.length; i++) dp[nums[i]] += nums[i];
+  for (let i = 0; i < dp.length; i++) {
+    let a = i - 2 > 0 ? dp[i - 2] : 0;
+    let b = i - 1 > 0 ? dp[i - 1] : 0;
+    dp[i] = Math.max(a + dp[i], b);
+  }
+  return dp[max];
+};
