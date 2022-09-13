@@ -3,6 +3,8 @@
  * @param {number} truckSize
  * @return {number}
  * 贪心，先将boxTypes按units倒序排序。再贪心优先取最大值
+ * time: O(nlogn)  排序
+ * space: O(logn)
  */
 var maximumUnits = function(boxTypes, truckSize) {
   boxTypes.sort((a,b) => b[1] - a[1]);
