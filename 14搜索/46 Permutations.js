@@ -2,8 +2,8 @@
  * @param {number[]} nums
  * @return {number[][]}
  * 全排列，回溯
- * time: O(n), n: 结果数组的长度
- * space: O(n)
+ * time: O(n * n!)
+ * space: O(n!)
  */
 var permute = function(nums) {
   let res = [];
