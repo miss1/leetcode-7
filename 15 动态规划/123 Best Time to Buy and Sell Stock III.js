@@ -32,3 +32,21 @@ var maxProfit = function(prices) {
   for (let i = 0; i < length; i++) res = Math.max(res, leftProfit[i] + rightProfit[i]);
   return res;
 };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ * time: O(n)
+ * space: O(1)
+ */
+var maxProfit2 = function(prices) {
+  let t1Cost = Infinity, t2Cost = Infinity;
+  let t1Profit = 0, t2Profit = 0;
+  for (let price of prices) {
+    t1Cost = Math.min(t1Cost, price);
+    t1Profit = Math.max(t1Profit, price - t1Cost);
+    t2Cost = Math.min(t2Cost, price - t1Profit);
+    t2Profit = Math.max(t2Profit, price - t2Cost);
+  }
+  return t2Profit;
+};
