@@ -1,1 +1,3 @@
-leetcode 算法学习
+leetcode algorithm solution
+
+Use JavaScript
