@@ -18,6 +18,8 @@
  * space: O(mn)
  */
 var findLength = function(nums1, nums2) {
+  // 注意，新建二维数组，不能用new Array(nums1.length).fill(new Array(nums2.length).fill(0));
+  // 这样里层的所有数组会指向同一个引用， 导致更新一个数时会同时更新其他的数
   let arr = new Array(nums1.length).fill(0).map(() => new Array(nums2.length).fill(0));
   let res = 0;
   for (let i = 0; i < nums1.length; i++) {
