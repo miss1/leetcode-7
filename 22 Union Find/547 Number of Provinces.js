@@ -34,3 +34,30 @@ var findCircleNum = function(isConnected) {
 
   return count;
 };
+
+/**
+ * @param {number[][]} isConnected
+ * @return {number}
+ * 图的DFS遍历
+ * time: O(n²)
+ * space: O(n)
+ */
+var findCircleNum2 = function(isConnected) {
+  let visited = new Set(), n = isConnected.length;
+  let provinces = 0;
+  const dfs = function(i) {
+    for (let j = 0; j < n; j++) {
+      if (!visited.has(j) && isConnected[i][j] === 1) {
+        visited.add(j);
+        dfs(j);
+      }
+    }
+  }
+  for (let i = 0; i < n; i++) {
+    if (!visited.has(i)) {
+      provinces += 1;
+      dfs(i);
+    }
+  }
+  return provinces;
+};
