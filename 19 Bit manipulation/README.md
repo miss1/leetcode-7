@@ -27,6 +27,8 @@ a = 12, b = 3
 a = a ^ b
 b = a ^ b  // b = a ^ b ^ b = a
 a = a ^ b  // a = a ^ b ^ a = b
+
+a ^ b = c -> a = b ^ c  // a ^ b = c -> b ^ c = b ^ a ^ b = a
 ```
 
 ### 常见套路
