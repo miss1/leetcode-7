@@ -22,7 +22,7 @@ function isPrimeNumber(n) {
  */
 function isPrimeNumber2(n) {
   if (n < 2) return false;
-  for (let i = 2; i < Math.floor(n/2); i++) {
+  for (let i = 2; i <= Math.floor(n/2); i++) {
     if (n % i === 0) return false;
   }
   return true;
@@ -37,7 +37,7 @@ function isPrimeNumber2(n) {
  */
 function isPrimeNumber3(n) {
   if (n < 2) return false;
-  for (let i = 2; i < Math.floor(Math.sqrt(n)); i++) {
+  for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++) {
     if (n % i === 0) return false;
   }
   return true;
@@ -64,3 +64,4 @@ function getPrimeNumber(n) {
 }
 
 console.log(getPrimeNumber(10))
+console.log(isPrimeNumber3(4))
