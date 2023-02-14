@@ -25,3 +25,17 @@ var addBinary = function(a, b) {
   if (addition === 1) res.push(1);
   return res.reverse().join('');
 };
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ * 先将两个数字转成十进制(BigInt)，相加，再转成二进制
+ * time: O(1)
+ * space: O(1)
+ */
+var addBinary2 = function(a, b) {
+  const num1 = BigInt('0b' + a);
+  const num2 = BigInt('0b' + b);
+  return (num1 + num2).toString(2);
+};
