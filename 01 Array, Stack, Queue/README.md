@@ -59,6 +59,46 @@
 ## 字符串
 'a'.charCodeAt() = 97
 
+## Z array
+对于一个string str = [0...n-1], z的长度跟str相等，z[i]存储以s[i]开头的最长子串的长度，这个子串是str的前缀
+
+eg: str = a   a   b   c   a   a   b   x   a   a   a   z
+
+z value = X   1   0   0   3   1   0   0   2   2   1   0
+
+explain: i = 1时， 以str[1]开头的最长子串是abcaabxaaaz，它与str的共同前缀是 a, 长度为1，z[1] = 1
+
+```
+function zarray(str) {
+  let n = str.length;
+  let z = new Array(n).fill(0);
+  z[0] = n;
+  let l = 0, r = 0;
+  for (let i = 1; i < n; i++) {
+    if (i > r) {
+      l = i;
+      r = i;
+      while (r < n && str[r-l] === str[r]) r++;
+      z[i] = r - l;
+      r--;
+    } else {
+      let k = i - l;
+      if (z[k] < r - i + 1) z[i] = z[k];
+      else {
+        l = i;
+        while (r < n && str[r - l] === str[r]) r++;
+        z[i] = r - l;
+        r--;
+      }
+    }
+  }
+  console.log(z);
+}
+```
+
+
+z[0]没有什么意义，z[0]的值为str.length，因为以str[0]开头的最长字串是他自己
+
 ## 数学知识
 
 两点[x1, y1]和[x2, y2]之间的距离 
