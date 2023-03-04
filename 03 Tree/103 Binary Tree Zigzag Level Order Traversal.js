@@ -25,3 +25,35 @@ var zigzagLevelOrder = function(root) {
   }
   return res;
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ * DFS。传入一个level值表示当前的层数。
+ * 当层数为偶数时，从左到右。将val值添加到result[level]的末尾
+ * 当层数为奇数时，从右到左。将val值添加到result[level]头部
+ * time: O(n)
+ * space: O(h)
+ */
+var zigzagLevelOrder2 = function(root) {
+  let result = [];
+  const dfs = function(root, level) {
+    if (!root) return;
+    if (!result[level]) result[level] = [];
+    if (level % 2 === 0) result[level].push(root.val);
+    else result[level].unshift(root.val);
+    dfs(root.left, level + 1);
+    dfs(root.right, level + 1);
+  };
+  dfs(root, 0);
+  return result;
+};
