@@ -17,3 +17,58 @@ var maxDepth = function(root) {
   preOrder(root, 1);
   return num;
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ * DFS, 计算得到左子树和右子树的深度，取更大值
+ * time: O(n)
+ * space: O(h)
+ */
+var maxDepth2 = function(root) {
+  const dfs = function(node) {
+    if (!node) return 0;
+    const left = dfs(node.left);
+    const right = dfs(node.right);
+    return Math.max(left, right) + 1;
+  };
+  return dfs(root)
+};
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ * BFS
+ * time: O(n)
+ * space: O(n)
+ */
+var maxDepth3 = function(root) {
+  if (!root) return 0;
+  let res = 0, current = [root];
+  while (current.length > 0) {
+    res++;
+    let next = [];
+    for (let n of current) {
+      if (n.left) next.push(n.left);
+      if (n.right) next.push(n.right);
+    }
+    current = next;
+  }
+  return res;
+};
