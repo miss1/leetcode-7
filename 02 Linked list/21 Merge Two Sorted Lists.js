@@ -25,3 +25,43 @@ var mergeTwoLists = function(list1, list2) {
   if (list2) p.next = list2;
   return node.next;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ * time: O(n)
+ * space: O(1)
+ */
+var mergeTwoLists2 = function(list1, list2) {
+  if (!list1) return list2;
+  if (!list2) return list1;
+  let p = list1.val <= list2.val ? list1 : list2;
+  while (list1 && list2) {
+    if (list1.val <= list2.val) {
+      let next = list1.next;
+      if (next && next.val <= list2.val) {
+        list1 = next;
+      } else {
+        list1.next = list2;
+        list1 = next;
+      }
+    } else {
+      let next = list2.next;
+      if (next && next.val < list1.val) {
+        list2 = next;
+      } else {
+        list2.next = list1;
+        list2 = next;
+      }
+    }
+  }
+  return p;
+};

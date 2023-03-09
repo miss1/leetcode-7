@@ -50,3 +50,28 @@ var trap1 = function(height) {
   }
   return res;
 };
+
+/**
+ * @param {number[]} height
+ * @return {number}
+ * 跟上面dp的思想差不多
+ * 双指针，分别指向头尾，记录左边最大值和右边最大值
+ * time: O(n)
+ * space: O(1)
+ */
+var trap3 = function(height) {
+  let left = 0, right = height.length - 1;
+  let res = 0, lmax = 0, rmax = 0;
+  while (left < right) {
+    if (height[left] < height[right]) {
+      lmax = Math.max(lmax, height[left]);
+      res += lmax - height[left];
+      left++;
+    } else {
+      rmax = Math.max(rmax, height[right]);
+      res += rmax - height[right];
+      right--;
+    }
+  }
+  return res;
+};
