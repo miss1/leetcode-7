@@ -81,3 +81,12 @@ const person = new Proxy({}, validator);
 person.age = 25; // Works fine
 person.age = -5; // Throws an error
 ```
+
+# Truthy and Falsy
+All values are considered truthy except the following:
+* false
+* All forms of zero, meaning 0, -0 (output of 0/-1), and 0n (output of BigInt(0))
+* NaN ("Not a Number", one way to get it is with 0/0)
+* "" (empty string)
+* null
+* undefined
