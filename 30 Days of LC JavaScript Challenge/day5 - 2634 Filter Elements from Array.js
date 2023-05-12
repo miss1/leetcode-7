@@ -2,6 +2,7 @@
  * @param {number[]} arr
  * @param {Function} fn
  * @return {number[]}
+ * Array.filter
  */
 var filter = function(arr, fn) {
   let newArray = [];

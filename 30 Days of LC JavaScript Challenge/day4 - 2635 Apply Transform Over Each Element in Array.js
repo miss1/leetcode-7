@@ -2,6 +2,7 @@
  * @param {number[]} arr
  * @param {Function} fn
  * @return {number[]}
+ * callbacks
  */
 var map = function(arr, fn) {
   let newArray = [];

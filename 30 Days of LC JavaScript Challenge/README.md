@@ -90,3 +90,33 @@ All values are considered truthy except the following:
 * "" (empty string)
 * null
 * undefined
+
+# Reduce
+```
+const nums = [1, 2, 3];
+const sum = nums.reduce((accumulator, val) => accumulator + val, 0);
+console.log(sum); // 6
+```
+
+```
+const groceries = [
+  { id: 173, name: "Soup" }, 
+  { id: 964, name: "Apple" },
+  { id: 535, name: "Cheese" }
+];
+
+/** With filter and map */
+var names = groceries
+  .filter(item => item.id > 500)
+  .map(item => item.name)
+
+/** With reduce */
+var names = groceries.reduce((accumulator, val) => {
+  if (val.id > 500) {
+    accumulator.push(val.name);
+  }
+  return accumulator;
+}, []);
+
+console.log(names); // ["Apple", "Cheese"]
+```

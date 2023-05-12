@@ -1,5 +1,6 @@
 /**
  * @return {Function}
+ * closures
  */
 var createHelloWorld = function() {
   return function(...args) {

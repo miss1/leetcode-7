@@ -1,6 +1,7 @@
 /**
  * @param {number} n
  * @return {Function} counter
+ * closures
  */
 var createCounter = function(n) {
   let c = n - 1;
