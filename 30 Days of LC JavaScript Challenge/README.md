@@ -120,3 +120,5 @@ var names = groceries.reduce((accumulator, val) => {
 
 console.log(names); // ["Apple", "Cheese"]
 ```
+
+function.length: 函数的形参个数

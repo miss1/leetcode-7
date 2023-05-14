@@ -12,3 +12,12 @@ A number greater than 1 is called prime if it is divisible by only 1 and itself.
 Assuming the size of the array is n
 * non-empty subsequences: 2^n - 1
 * non-empty subsequences(start with the first element): 2^(n-1)
+
+# greatest common divisor of x and y（最大公约数）
+
+```
+const gcd = function(a, b) {
+    if (b === 0) return a;
+    return gcd(b, a % b);
+}
+```
