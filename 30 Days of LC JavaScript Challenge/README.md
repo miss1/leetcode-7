@@ -122,3 +122,5 @@ console.log(names); // ["Apple", "Cheese"]
 ```
 
 function.length: 函数的形参个数
+
+# Promise
