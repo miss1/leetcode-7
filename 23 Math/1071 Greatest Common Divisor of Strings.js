@@ -2,6 +2,7 @@
  * @param {string} str1
  * @param {string} str2
  * @return {string}
+ * 需要计算出一个字符串的长度，该长度既可以整除str1的长度又可以整除str2的长度（最大公约数）
  * 欧几里得算法（辗转相除法）求最大公约数。gcd(a,b) = gcd(b,a mod b)
  * 求得字符串长度的最大公约数之后，截取对应的长度返回即可
  * time: O(n)
