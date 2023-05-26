@@ -124,3 +124,16 @@ console.log(names); // ["Apple", "Cheese"]
 function.length: 函数的形参个数
 
 # Promise
+
+
+# Array
+```
+// slice：从数组或字符串中读取元素
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1,3);  // ["Orange", "Lemon"]
+
+// splice
+
+
+// reduce
+```
