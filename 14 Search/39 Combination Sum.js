@@ -28,3 +28,25 @@ var combinationSum = function(candidates, target) {
   backTrack([], 0);
   return res;
 };
+
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum2 = function(candidates, target) {
+  let res = [];
+  const backTrack = function(arr, start, sum) {
+    if (sum >= target) {
+      if (sum === target) res.push([...arr]);
+      return;
+    }
+    for (let i = start; i < candidates.length; i++) {
+      arr.push(candidates[i]);
+      backTrack(arr, i, sum + candidates[i]);
+      arr.pop();
+    }
+  };
+  backTrack([], 0, 0);
+  return res;
+};
