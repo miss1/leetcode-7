@@ -18,8 +18,8 @@
 // 结构，输入单词：lu { l: { count: 0, preCount: 1, u: { count: 1, preCount: 1 } } }
 var Trie = function () {
   this.children = {};
-  this.count = 0; // 表示以当前节点结束的单词个数
-  this.preCount = 0; // 表示以当前节点结束的前缀个数
+  // node.count = 0; 表示以当前节点结束的单词个数
+  // node.preCount = 0; 表示以当前节点结束的前缀个数
 };
 
 // O(len(word))

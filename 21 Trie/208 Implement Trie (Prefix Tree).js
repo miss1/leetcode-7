@@ -1,8 +1,6 @@
 
 var Trie = function() {
   this.children = {};
-  this.count = 0;
-  this.preCount = 0;
 };
 
 /**
