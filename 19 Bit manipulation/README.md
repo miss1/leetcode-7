@@ -51,3 +51,4 @@ a ^ b = c -> a = b ^ c  // a ^ b = c -> b ^ c = b ^ a ^ b = a
 * '0b' -> 二进制； '0x' -> 十六进制
 * eg: let a = BigInt('0b110010') = 50n
 * a.toString(2) -> 数字以二进制值显示
+* eg: 67
