@@ -17,3 +17,24 @@ var maxSubArray = function(nums) {
   }
   return res;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 用一个数组记录以当前num结尾时，能得到的最大和
+ * f(n + 1) = Math.max(f(n) + num, num);
+ * 上面的方法是一样的，只是优化了空间复杂度
+ * time: O(n)
+ * space: O(n)
+ */
+  // -2 1 -3 4 -1 2 1 -5 4
+  // -2 1 -2 4 3  5 6 1  5
+var maxSubArray2 = function(nums) {
+  const len = nums.length;
+  let memo = new Array(len + 1).fill(0), res = -Infinity;
+  for (let i = 0; i < len; i++) {
+    memo[i + 1] = Math.max(memo[i] + nums[i], nums[i]);
+    res = Math.max(res, memo[i + 1]);
+  }
+  return res;
+};
