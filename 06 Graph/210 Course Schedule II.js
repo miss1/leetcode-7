@@ -52,3 +52,46 @@ var findOrder = function(numCourses, prerequisites) {
   for (let i = order.length - 1; i >= 0; i--) res.push(order[i]);
   return res;
 };
+
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {number[]}
+ * BFS, Topological sorting
+ * 记录每一个node的in-degree，从in-degree为0的node开始bfs遍历，逐步更新每一个node的in-degree
+ * 如果遍历结束后visited的长度不等于node的总数，说明存在环，不可能遍历完所有node
+ * time: O(V+E)
+ * space: O(V+E)
+ */
+var findOrder2 = function(numCourses, prerequisites) {
+  let inDegree = new Array(numCourses).fill(0);
+  let graph = new Map();
+  for (let p of prerequisites) {
+    if (graph.has(p[1])) graph.get(p[1]).push(p[0]);
+    else graph.set(p[1], [p[0]]);
+    inDegree[p[0]] += 1;
+  }
+
+  let current = [];
+  for (let i = 0; i < numCourses; i++) {
+    if (inDegree[i] === 0) current.push(i);
+  }
+
+  let visited = new Set();
+  while (current.length > 0) {
+    let next = [];
+    for (let node of current) {
+      visited.add(node);
+      if (!graph.has(node)) continue;
+      for (let n of graph.get(node)) {
+        if (visited.has(n)) continue;
+        inDegree[n] -= 1;
+        if (inDegree[n] === 0) next.push(n);
+      }
+    }
+    current = next;
+  }
+
+  if (visited.size !== numCourses) return [];
+  return [...visited];
+};

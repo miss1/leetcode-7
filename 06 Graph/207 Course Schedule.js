@@ -38,3 +38,43 @@ var canFinish = function(numCourses, prerequisites) {
   }
   return true;
 };
+
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ * BFS, Topological sorting
+ * 跟210几乎一摸一样
+ * time: O(V+E)
+ * space: O(V+E)
+ */
+var canFinish2 = function(numCourses, prerequisites) {
+  let inDegree = new Array(numCourses).fill(0);
+  let graph = new Map();
+  for (let p of prerequisites) {
+    if (graph.has(p[1])) graph.get(p[1]).push(p[0]);
+    else graph.set(p[1], [p[0]]);
+    inDegree[p[0]] += 1;
+  }
+
+  let visited = new Set(), current = [];
+  for (let i = 0; i < numCourses; i++) {
+    if (inDegree[i] === 0) current.push(i);
+  }
+
+  while (current.length > 0) {
+    let next = [];
+    for (let node of current) {
+      visited.add(node);
+      if (!graph.has(node)) continue;
+      for (let n of graph.get(node)) {
+        if (visited.has(n)) continue;
+        inDegree[n] -= 1;
+        if (inDegree[n] === 0) next.push(n);
+      }
+    }
+    current = next;
+  }
+
+  return visited.size === numCourses;
+};
