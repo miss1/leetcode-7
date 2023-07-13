@@ -45,7 +45,7 @@
 * 将in-degree为0的node加入queue，删除该node并且更新与其相关连的node的in-degree。直到没有node的in-degree为0
 * 如果没有node的in-degree为0，并且存在没有遍历过的node，说明存在环
 * Topological sorting只适用于有向图和无环图（需要有in-degree为0的node作为起点）
-* 210,269, Topological sorting
+* 210,269,1136,310, Topological sorting
 * 207, 判断有没有环，做一遍Topological sorting，如果不能遍历完所有node，说明有环
 
 ### 判断两个点之间是否存在路径
