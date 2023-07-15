@@ -38,6 +38,45 @@ var findCircleNum = function(isConnected) {
 /**
  * @param {number[][]} isConnected
  * @return {number}
+ * disjoint set，先假设provinces的数量等于city的数量count，每次union合并的时候说明减少一个province，count减去1.
+ * 最后所有合并操作结束后，剩余的count就是实际的province数量
+ * time: O(n²)
+ * space: O(n)
+ */
+var findCircleNum1 = function(isConnected) {
+  let count = isConnected.length;
+  let root = new Array(count).fill(0).map((val, i) => i);
+  let rank = new Array(count).fill(1);
+
+  const find = function(a) {
+    if (root[a] === a) return a;
+    return root[a] = find(root[a]);
+  };
+
+  const union = function(x, y) {
+    let rootX = find(x), rootY = find(y);
+    if (rootX !== rootY) {
+      if (rank[rootX] > rank[rootY]) root[rootY] = rootX;
+      else if (rank[rootX] < rank[rootY]) root[rootX] = rootY;
+      else {
+        root[rootY] = rootX;
+        rank[rootX] += 1;
+      }
+      count--;
+    }
+  };
+
+  for (let i = 0; i < isConnected.length; i++) {
+    for (let j = 0; j < isConnected.length; j++) {
+      if (isConnected[i][j] === 1) union(i, j);
+    }
+  }
+  return count;
+};
+
+/**
+ * @param {number[][]} isConnected
+ * @return {number}
  * 图的DFS遍历
  * time: O(n²)
  * space: O(n)

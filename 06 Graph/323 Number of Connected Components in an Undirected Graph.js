@@ -82,3 +82,41 @@ var countComponents2 = function(n, edges) {
   }
   return res;
 };
+
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @return {number}
+ * Union Find
+ * 每次union合并的时候减少一个node，最后剩下的node数量就是root数量
+ * time: O(V+E*α(n))
+ * space: O(V)
+ */
+var countComponents3 = function(n, edges) {
+  let count = n;
+  let root = new Array(n).fill(0).map((val, i) => i);
+  let rank = new Array(n).fill(1);
+
+  const find = function(a) {
+    if (root[a] === a) return a;
+    return root[a] = find(root[a]);
+  };
+
+  const union = function(x, y) {
+    let root1 = find(x), root2 = find(y);
+    if (root1 !== root2) {
+      if (rank[root1] > rank[root2]) root[root2] = root1;
+      else if (rank[root1] < rank[root2]) root[root1] = root2;
+      else {
+        root[root2] = root1;
+        rank[root1] += 1;
+      }
+      count--;
+    }
+  };
+
+  for (let e of edges) {
+    union(e[0], e[1]);
+  }
+  return count;
+};
