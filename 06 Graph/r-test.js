@@ -37,3 +37,33 @@ class UnionFind {
 
 let uf = new UnionFind(10);
 
+/**
+ * 带权 disjoint set
+ * map = {node: [root, weight]}
+ * LC399
+ */
+class UnionFind2 {
+  constructor() {
+    this.map = new Map();
+  }
+
+  find(a) {
+    if (!map.has(a)) map.set(a, [a, 1]);
+    const [entryRoot, entryValue] = map.get(a);
+
+    if (entryRoot !== a) {
+      const [newEntryRoot, newEntryVal] = this.find(entryRoot);
+      map.set(a, [newEntryRoot, entryValue * newEntryVal]);
+    }
+    return map.get(a);
+  }
+
+  union(x, y, value) {
+    const [rootX, xWeight] = this.find(x);
+    const [rootY, yWeight] = this.find(y);
+    if (rootX !== rootY) {
+      map.set(rootX, [rootY, yWeight * value / xWeight]);
+    }
+  }
+}
+

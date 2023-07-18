@@ -53,3 +53,50 @@ var calcEquation = function(equations, values, queries) {
   }
   return result;
 };
+
+/**
+ * @param {string[][]} equations
+ * @param {number[]} values
+ * @param {string[][]} queries
+ * @return {number[]}
+ * 带权 Union-Find
+ * 建立Union-Find，让被除数作为root，并且记录每个点到root的weight(root的倍数，root乘以多少会等于该node)，eg: a/b=3, b为root，a的weight为3
+ * 对与c/d, 如果c和d在有同一个根节点，c/d = c到root的weight/d到root的weight
+ */
+var calcEquation2 = function(equations, values, queries) {
+  let map = new Map;
+  const find = function(root) {
+    if (!map.has(root)) map.set(root, [root, 1]);
+    const [entryRoot, entryValue] = map.get(root);
+
+    if (entryRoot !== root) {
+      const [newEntryRoot, newEntryVal] = find(entryRoot);
+      map.set(root, [newEntryRoot, entryValue * newEntryVal]);
+    }
+    return map.get(root);
+  };
+  const union = function(dividend, divisor, value) {
+    const [dividendGid, dividendVal] = find(dividend);
+    const [divisorGid, divisorVal] = find(divisor);
+
+    if (dividendGid !== divisorVal) {
+      map.set(dividendGid, [divisorGid, divisorVal * value / dividendVal]);
+    }
+  };
+
+  for (let i = 0; i < equations.length; i++) {
+    union(equations[i][0], equations[i][1], values[i]);
+  }
+
+  let res = [];
+  for (let q of queries) {
+    if (!map.has(q[0]) || !map.has(q[1])) res.push(-1.0);
+    else {
+      const [dividendGid, dividendVal] = find(q[0]);
+      const [divisorGid, divisorVal] = find(q[1]);
+      if (dividendGid !== divisorGid) res.push(-1.0);
+      else res.push(dividendVal / divisorVal);
+    }
+  }
+  return res;
+};
