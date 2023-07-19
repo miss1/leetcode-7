@@ -4,7 +4,7 @@
  * @param {number} source
  * @param {number} destination
  * @return {boolean}
- * BFS，DFS，从source开始，将所有neighbor push进stack中，在逐个寻找下一层neighbor
+ * DFS，从source开始，将所有neighbor push进stack中，在逐个寻找下一层neighbor
  * 直到找到destination或者stack为空
  * time: O(V+E)
  * space: O(V+E)
@@ -38,11 +38,44 @@ var validPath = function(n, edges, source, destination) {
  * @param {number} source
  * @param {number} destination
  * @return {boolean}
+ * BFS
+ * time: O(V+E)
+ * space: O(V+E)
+ */
+var validPath2 = function(n, edges, source, destination) {
+  let graph = new Map();
+  for (let e of edges) {
+    if (graph.has(e[0])) graph.get(e[0]).push(e[1]);
+    else graph.set(e[0], [e[1]]);
+
+    if (graph.has(e[1])) graph.get(e[1]).push(e[0]);
+    else graph.set(e[1], [e[0]]);
+  }
+
+  let queue = [source], visited = new Set();
+  for (let i = 0; i < queue.length; i++) {
+    let node = queue[i];
+    if (visited.has(node)) continue;
+    if (node === destination) return true;
+    visited.add(node);
+    for (let n of graph.get(node)) {
+      queue.push(n);
+    }
+  }
+  return false;
+};
+
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @param {number} source
+ * @param {number} destination
+ * @return {boolean}
  * Union-Find, 两个node的root相等，则一定存在路径
  * time:  O(E * α(n))
  * space: O(n)
  */
-var validPath2 = function(n, edges, source, destination) {
+var validPath3 = function(n, edges, source, destination) {
   let root = new Array(n).fill(0).map((val, idx) => idx);
   let rank = new Array(n).fill(1);
 

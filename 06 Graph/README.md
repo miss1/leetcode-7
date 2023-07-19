@@ -17,6 +17,14 @@
 * 广度优先遍历
 * 可参考 841 题
 
+DFS
+* Traverse all vertices in a “graph”
+* Traverse all paths between any two vertices in a “graph”
+
+BFS
+* Traversing all vertices in the “graph”
+* Finding the shortest path between two vertices in a graph where all edges have equal and positive weights.
+
 ### 常见算法
 * Dijkstra 算法。单源最短路径
 * Floyd-Warshall 算法。多源最短路径
@@ -108,11 +116,16 @@ let uf = new UnionFind(10);
 * Union-Find，两个点拥有同一个root说明存在路径
 * 1971
 
-获取两个点之间的所有路径
+获取两个点之间的所有路径（DFS）
 * DFS + Backtrack
 * 回溯的思路，从起点开始，dfs寻找，直到找到目标点，如果一条路走完还没有找到，则返回上一节点走其它分支
 * 模板可参考797
 * 399, 332, 797
+
+获取两个点之间的所有路径（BFS）
+* queue记录当前的所有路径，路径中最后一个节点为当前节点。
+* 持续寻找当前节点的neighbors, 添加到queue中, 直到找到target
+* 797
 
 ### 图中是否存在环
 * 无向图：Union-Find，当两个点具有相同的root时，如果这两个点直接相连，说明存在环
