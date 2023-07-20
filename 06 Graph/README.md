@@ -89,6 +89,43 @@ let uf = new UnionFind(10);
 * 261, 323, 547, 1101, 1202, 1319
 * 带权Union-Find，399
 
+### Topological sorting & Kahn's Algorithm
+* Kahn's Algorithm: keeping track of the number of incoming edges into each node (in-degree)
+* 先计算每个node的in-degree和out-degree. in-degree为0，说明当前可以访问该node
+* 将in-degree为0的node加入queue，删除该node并且更新与其相关连的node的in-degree。直到没有node的in-degree为0
+* 如果没有node的in-degree为0，并且存在没有遍历过的node，说明存在环
+* Topological sorting只适用于有向图和无环图（需要有in-degree为0的node作为起点）
+* 210,269,1136,310, Topological sorting
+* 207, 判断有没有环，做一遍Topological sorting，如果不能遍历完所有node，说明有环
+
+### Minimum Spanning Tree
+* Spanning Tree: A spanning tree is a connected subgraph in an undirected graph where all vertices are connected with the minimum number of edges
+* 无向图中用最少的edges连接所有的node，形成的subgraph就是Spanning Tree
+* Minimum Spanning Tree: 带权图中，total edge weight最少的Spanning Tree
+
+Cut Property
+* "cut": 将graph中的顶点划分为两个不相交的子集
+* crossing edge: 连接两个子集中node的edge
+* 如果子集A中的edge E的weight比A中的其它edge都小，那这个edge属于graph中所有的MST(Minimum Spanning Tree)
+
+Kruskal’s Algorithm (by adding edges)
+* construct a “minimum spanning tree” of a “weighted undirected graph”.
+* 先将所有的edges按weight排序，升序
+* 根据排好序之后的顺序选择edge组成Minimum Spanning Tree，如果edge会让Tree出现环则跳过该edge
+* 重复上一步直到选择的edge数量等于n-1（树的概念，edges = n - 1）
+* 注意两个点：1.edges = n - 1, 2.判断有没有环
+* time:  O(ElogE+Eα(V))=O(ElogE)
+* 1584
+
+Prim’s Algorithm (by adding vertices)
+* construct a “minimum spanning tree” of a “weighted undirected graph”.
+* 将点分为两个set，visited和unvisited，从任意一个点vertices开始，加入到visited中
+* 从所有与visited中的点相连的边中选择weight最小的边，找到下一个点，加入visited中
+* 每找到一个点时，遍历找到与该点相连的所有边，存储到heap中，每次取新的点从heap中取
+* 重复上一步直到所有点都在visited中
+* 优化：可以用一个数组来记录每个点到其它点的最小weight，详情参考1584
+* 1584
+
 ### connected component
 求图有多少个component(单独的模块，不跟其它模块相连)
 * DFS or BFS遍历，首先要遍历n个node，以当前node为起点往下走，每次重新开始一个起点往下走时，说明就是在遍历一个新的component
@@ -98,18 +135,9 @@ let uf = new UnionFind(10);
 
 ### 判断图是否是有效树
 * 判断一个graph是否是一个有效树，同时满足两点
-* 1：只有一个connected component； 
+* 1：只有一个connected component；
 * 2：graph中不存在环（line = n - 1,树的概念(无向图)）
 * 261
-
-### Topological sorting & Kahn's Algorithm
-* Kahn's Algorithm: keeping track of the number of incoming edges into each node (in-degree)
-* 先计算每个node的in-degree和out-degree. in-degree为0，说明当前可以访问该node
-* 将in-degree为0的node加入queue，删除该node并且更新与其相关连的node的in-degree。直到没有node的in-degree为0
-* 如果没有node的in-degree为0，并且存在没有遍历过的node，说明存在环
-* Topological sorting只适用于有向图和无环图（需要有in-degree为0的node作为起点）
-* 210,269,1136,310, Topological sorting
-* 207, 判断有没有环，做一遍Topological sorting，如果不能遍历完所有node，说明有环
 
 ### 判断两个点之间是否存在路径
 * BFS, DFS，从起点开始，逐层寻找destination
