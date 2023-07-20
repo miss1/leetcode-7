@@ -115,7 +115,7 @@ Kruskal’s Algorithm (by adding edges)
 * 重复上一步直到选择的edge数量等于n-1（树的概念，edges = n - 1）
 * 注意两个点：1.edges = n - 1, 2.判断有没有环
 * time:  O(ElogE+Eα(V))=O(ElogE)
-* 1584
+* 1584, 1168
 
 Prim’s Algorithm (by adding vertices)
 * construct a “minimum spanning tree” of a “weighted undirected graph”.
