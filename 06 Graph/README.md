@@ -155,6 +155,41 @@ Prim’s Algorithm (by adding vertices)
 * 持续寻找当前节点的neighbors, 添加到queue中, 直到找到target
 * 797
 
+### single-source shortest path(单源最短路径)
+
+Dijkstra’s algorithm
+* can only be used to solve this problem in a graph with non-negative weights.
+* 从起点start开始逐渐向外层扩张，同时更新到达其它节点的最短路径
+* Each step selects the “minimum weight” from the currently reached vertices to find the “shortest path” to other vertices.
+* 用priority queue存储每个点到start的距离，每次取距离最短的点，直到queue为空
+* time: O(E + VlogV)
+* 743， 1631
+
+Bellman-Ford algorithm
+* can solve the “single-source shortest path” in a weighted directed graph with any weights
+* only applicable to “graphs” with no “negative weight cycles”.
+* Theorem 1: In a “graph with no negative-weight cycles” with N vertices, the shortest path between any two vertices has at most N-1 edges.
+* Theorem 2: In a “graph with negative weight cycles”, there is no shortest path.
+* 从start开始遍历，更新每个node到start的最短距离，存储到数组中
+* 重复遍历n-1次，得到的数组中的值就是到达每个node的最短距离
+* 检测graph是否存在negative weight cycle：重复遍历n次，第n次的时候如果出现更短的距离说明存在负环
+* time: O(V⋅E)
+
+DP
+* Bellman-Ford algorithm
+* 由Bellman-Ford algorithm可知，最多可以有N-1 edges，所以要遍历 N-1次
+* 先计算最多有1条边的结果，在计算最多有2条边的结果.....最后n-1条边的结果
+* 如果题目要求最多经过k个点，或者最多经过k条边，则遍历k次即可
+* dp[k][u] = min(dp[k][u], dp[k - 1][v] + weight(u,v))
+* k为最多经过的边数，u为当前node，v为当前node的前一个节点
+* 787
+
+SPFA algorithm(the Shortest Path Faster Algorithm)
+* improved variation of the Bellman-Ford algorithm by using a queue
+* 从start开始遍历，更新每个node到start的最短距离，存储到数组中，如果遇到更短的距离，将该node存储到queue中
+* 当前遍历完成后，从queue中出队取出node作为下一次遍历的start，重复直到queue为空
+* time: O(V⋅E)
+
 ### 图中是否存在环
 * 无向图：Union-Find，当两个点具有相同的root时，如果这两个点直接相连，说明存在环
 * 对于有向图：Topological sorting，做一遍Topological sorting，如果不能遍历完所有node，说明有环
