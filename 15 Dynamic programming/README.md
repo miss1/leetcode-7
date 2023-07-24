@@ -21,8 +21,21 @@
 * 临界条件
 * 状态转移方程
 
+### Two Methods
+Bottom-up (Tabulation)
+* implemented with iteration and starts at the base cases
+* runtime is usually faster, as iteration does not have the overhead that recursion does.
+
+Top-down (Memoization)
+* implemented with recursion and made efficient with memoization (O(n))
+* if without memoization, O(2^n)
+* usually much easier to write.
 
 题型
+* a problem is asking for the maximum/minimum/longest/shortest of something
+* the number of ways to do something
+* if it is possible to reach a certain point
+* has constraints that cause decisions to affect other decisions
 * LIS, 最长上升子序列, 673
 * LCS, 最长公众子序列, 1143
 * 子集，子序列问题，可以考虑倒序遍历，从最后一个元素往前推

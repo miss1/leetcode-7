@@ -50,3 +50,25 @@ var deleteAndEarn2 = function(nums) {
   }
   return dp[max];
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * Top-down, Recursion with Memoization
+ */
+var deleteAndEarn3 = function(nums) {
+  let map = new Map(), max = 0;
+  for (let n of nums) {
+    if (map.has(n)) map.set(n, map.get(n) + n);
+    else map.set(n, n);
+    max = Math.max(n, max);
+  }
+  let memo = new Map();
+  const dp = function(i) {
+    if (i === 0) return 0;
+    if (i === 1) return map.get(i) || 0;
+    if (!memo.has(i)) memo.set(i, Math.max(dp(i - 1), dp(i - 2) + (map.get(i) || 0)));
+    return memo.get(i);
+  };
+  return dp(max);
+};
