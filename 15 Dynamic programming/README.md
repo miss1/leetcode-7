@@ -17,9 +17,10 @@
 * 子问题的解一旦确定，就不再改变
 
 三要素
-* 状态定义
-* 临界条件
+* 状态定义，需要记录的变量
+* 临界条件，base cases，dp终止的条件
 * 状态转移方程
+* memorization 记录已经获取的数据
 
 ### Two Methods
 Bottom-up (Tabulation)
@@ -30,6 +31,8 @@ Top-down (Memoization)
 * implemented with recursion and made efficient with memoization (O(n))
 * if without memoization, O(2^n)
 * usually much easier to write.
+
+198, 740, 746, 1137, 1770
 
 题型
 * a problem is asking for the maximum/minimum/longest/shortest of something
