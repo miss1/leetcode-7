@@ -21,3 +21,26 @@ var longestCommonSubsequence = function(text1, text2) {
   }
   return longestLength;
 };
+
+/**
+ * @param {string} text1
+ * @param {string} text2
+ * @return {number}
+ * dp, Top-down (Memoization)
+ */
+var longestCommonSubsequence2 = function(text1, text2) {
+  let m = text1.length, n = text2.length;
+  let memo = new Array(m).fill(-1).map(val => new Array(n).fill(-1));
+  const dp = function(i, j) {
+    if (memo[i][j] !== -1) return memo[i][j];
+    if (text1[i] === text2[j]) {
+      memo[i][j] = i === 0 || j === 0 ? 1 : dp(i - 1, j - 1) + 1;
+    } else {
+      let left = j === 0 ? 0 : dp(i, j - 1);
+      let top = i === 0 ? 0 : dp(i - 1, j);
+      memo[i][j] = Math.max(left, top);
+    }
+    return memo[i][j];
+  };
+  return dp(m - 1, n - 1);
+};

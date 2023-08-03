@@ -21,3 +21,6 @@ const gcd = function(a, b) {
     return gcd(b, a % b);
 }
 ```
+
+# 累加和
+1 + 2 + 3 + ... + n = n(n+1)/2
