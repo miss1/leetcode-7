@@ -34,6 +34,20 @@ Top-down (Memoization)
 
 198, 740, 746, 1137, 1770
 
+### 类型
+1D problem
+* 只有一种状态
+* 70, 746, 322
+
+Multi-dimensional problem
+* 有多种状态，互相关联
+* 309, 714
+
+Matrix DP
+* 二维数组状态
+* 63, 931
+
+
 题型
 * a problem is asking for the maximum/minimum/longest/shortest of something
 * the number of ways to do something
@@ -42,3 +56,5 @@ Top-down (Memoization)
 * LIS, 最长上升子序列, 673
 * LCS, 最长公众子序列, 1143
 * 子集，子序列问题，可以考虑倒序遍历，从最后一个元素往前推
+
+
