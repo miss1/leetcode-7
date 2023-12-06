@@ -194,3 +194,7 @@ SPFA algorithm(the Shortest Path Faster Algorithm)
 * 无向图：Union-Find，当两个点具有相同的root时，如果这两个点直接相连，说明存在环
 * 对于有向图：Topological sorting，做一遍Topological sorting，如果不能遍历完所有node，说明有环
 * 207
+
+### 多个状态
+* 计算公交线路，最少转车，815
+* 将一组数据作为一个node，每条路线之间的关系作为边
