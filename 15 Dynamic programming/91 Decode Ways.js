@@ -1,7 +1,7 @@
 /**
  * @param {string} s
  * @return {number}
- * dp, top-down
+ * dp, bottom-up
  * dp[i]记录当以s[i]结尾时，有多少种decode方式
  * 有两种情况，s[i]为单独一个字母，则dp[i] = dp[i - 1]; s[i-1]s[i]结合组成一个字母，则dp[i] = dp[i - 2]
  * 满足组合条件的情况下（数字不等于0并且不以0开头）可得：dp[i] = dp[i - 1] + dp[i - 2]
