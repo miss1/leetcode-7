@@ -1,6 +1,8 @@
 /**
  * @param {string} s
  * @return {number}
+ * time: O(n)
+ * space: O(1)
  */
 var maxLengthBetweenEqualCharacters = function(s) {
   let arr = new Array(26).fill(-1);
