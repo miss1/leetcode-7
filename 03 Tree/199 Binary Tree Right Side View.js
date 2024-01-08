@@ -27,3 +27,31 @@ var rightSideView = function(root) {
   }
   return res;
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ * DFS, 先序遍历
+ * res存储每一层的值（对于每一层，后面的值覆盖前面的值，最后留下的就是每一层最右边的值）
+ * time: O(n)
+ * space: O(h)
+ */
+var rightSideView2 = function(root) {
+  let res = [];
+  const dfs = (level, node) => {
+    if (!node) return;
+    res[level] = node.val;
+    dfs(level + 1, node.left);
+    dfs(level + 1, node.right);
+  };
+  dfs(0, root);
+  return res;
+};
