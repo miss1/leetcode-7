@@ -31,3 +31,25 @@ var closeStrings = function(word1, word2) {
   }
   return true;
 };
+
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {boolean}
+ * 和上面一样，用数组实现
+ */
+var closeStrings2 = function(word1, word2) {
+  if (word1.length !== word2.length) return false;
+  let w1 = new Array(26).fill(0);
+  let w2 = new Array(26).fill(0);
+  for (let i = 0; i < word1.length; i++) {
+    w1[word1[i].charCodeAt(0) - 'a'.charCodeAt(0)] += 1;
+    w2[word2[i].charCodeAt(0) - 'a'.charCodeAt(0)] += 1;
+  }
+  for (let i = 0; i < 26; i++) {
+    if ((w1[i] === 0 && w2[i] > 0) || (w2[i] === 0 && w1[i] > 0)) return false;
+  }
+  w1.sort((a, b) => a - b);
+  w2.sort((a, b) => a - b);
+  return w1.join(',') === w2.join(',');
+};
