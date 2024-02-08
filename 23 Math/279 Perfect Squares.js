@@ -30,3 +30,25 @@ var numSquares = function(n) {
   }
   return count;
 };
+
+/**
+ * @param {number} n
+ * @return {number}
+ * DP, 背包问题。 跟322类似
+ * 先算出所有的perfectSquare，再求用最少的perfectSquare组成target(用最少的coin组成target)
+ * time: O(n * Math.sqrt(n))
+ * space: O(n)
+ */
+var numSquares2 = function(n) {
+  let squares = [];
+  for (let i = 1; i <= Math.floor(Math.sqrt(n)); i++) squares.push(i * i);
+  let dp = new Array(n + 1).fill(Infinity);
+  dp[0] = 0;
+  for (let i = 1; i <= n; i++) {
+    for (let square of squares) {
+      if (square > i) break;
+      dp[i] = Math.min(dp[i], dp[i - square] + 1);
+    }
+  }
+  return dp[n];
+};
