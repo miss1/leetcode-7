@@ -174,6 +174,7 @@ Bellman-Ford algorithm
 * 重复遍历n-1次，得到的数组中的值就是到达每个node的最短距离
 * 检测graph是否存在negative weight cycle：重复遍历n次，第n次的时候如果出现更短的距离说明存在负环
 * time: O(V⋅E)
+* 787
 
 DP
 * Bellman-Ford algorithm
