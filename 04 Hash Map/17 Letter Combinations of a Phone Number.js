@@ -26,7 +26,8 @@ var letterCombinations = function (digits) {
  * @param {string} digits
  * @return {string[]}
  * 递归
- * time: O(n) n为结果数组的长度
+ * 有四层，每一层最多有四种选项
+ * time: O(n) n为结果数组的长度，O(m ^ m), m = digits.length
  * space: O(n)
  */
 var letterCombinations2 = function(digits) {
