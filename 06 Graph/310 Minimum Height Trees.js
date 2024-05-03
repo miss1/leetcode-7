@@ -2,6 +2,7 @@
  * @param {number} n
  * @param {number[][]} edges
  * @return {number[]}
+ * Topological sorting
  * 现根据边构建graph，要求树的高度最小，说明root应该在最中间的位置
  * 要寻找最中间的位置，只需逐步砍掉叶子leaf，直到只剩下两个节点，剩下的两个节点就是最中心
  * time: O(n)
