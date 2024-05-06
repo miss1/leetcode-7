@@ -49,3 +49,23 @@ function removeNodes(head: ListNode | null): ListNode | null {
   }
   return res.next;
 }
+
+
+/**
+ * Recursion
+ * 要保证链表的值是递减的，递归，从最后一个node开始判断
+ * 对于当前的node，通过递归获取它之后的正确链表的head，然后判断两个node的值，来决定是否需要删除当前node
+ * time: O(n)
+ * space: O(n)
+ * @param head
+ */
+function removeNodes2(head: ListNode | null): ListNode | null {
+  if (head == null || head.next == null) return head;
+  const p: ListNode = removeNodes2(head.next)!;
+  if (head.val < p.val) {
+    head.next = null;
+    return p;
+  }
+  head.next = p;
+  return head;
+}
