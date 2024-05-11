@@ -63,3 +63,69 @@ var deserialize = function(data) {
  * time: O(n)
  * space: O(n)
  */
+
+
+/*************************************************************************************************************/
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var serialize2 = function(root) {
+  if (root == null) return '';
+  let res = [];
+  const dfs = function(node) {
+    if (node == null) res.push('null');
+    else {
+      res.push(node.val);
+      dfs(node.left);
+      dfs(node.right);
+    }
+  };
+  dfs(root);
+  return res.join(',');
+};
+
+/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */
+var deserialize2 = function(data) {
+  if (data === '') return null;
+  let arr = data.split(',');
+  let i = 0;
+  const dfs = function() {
+    if (arr[i] === 'null') return null;
+    let node = new TreeNode(Number(arr[i]));
+    i++;
+    let left = dfs();
+    i++;
+    let right = dfs();
+    node.left = left;
+    node.right = right;
+    return node;
+  };
+  return dfs();
+};
+
+/**
+ * Your functions will be called as such:
+ * deserialize(serialize(root));
+ * DFS
+ * serialize: DFS先序遍历生成字符串
+ * deserialize: DFS生成树，记录一个i表示arr的下标，每生成一个node，下标i加1
+ * arr中的顺序就是按照dfs的顺序来的，所以每次直接将i加一位就可
+ */
