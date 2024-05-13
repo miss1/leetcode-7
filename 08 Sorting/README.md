@@ -34,4 +34,21 @@
 
 ### priority-queue
 * 2353
+```javascript
+/**
+ * datastructures-js/priority-queue
+ * https://github.com/datastructures-js/priority-queue
+ */
+let queue = new PriorityQueue({compare: (a, b) => b - a});
+queue.enqueue(1);  // logn
+queue.dequeue();  // logn
+
+const numbers = [3, -2, 5, 0, -1, -5, 4];
+const pq = PriorityQueue.fromArray(numbers, (a, b) => a - b);  // O(n)
+
+const numbersQueue = new MinPriorityQueue();
+numbersQueue.dequeue().element
+const bidsQueue = new MaxPriorityQueue((bid) => bid.value);
+
+```
 
