@@ -24,7 +24,7 @@ var isNumber = function (s) {
       return false;
     }
 
-    // .; 只能有一个dot，dot的前面和后面至少需要一个digit
+    // .; 只能有一个dot，dot的前面和后面至少需要一个digit; dot前面不能有e
     if (s[i] === '.') {
       if (ex || dot || !(isDigit(s[i - 1]) || s[i - 1] === '+' || s[i - 1] === '-')) return false;
       if ((i === s.length - 1 || !(isDigit(s[i + 1]))) && !(isDigit(s[i - 1]))) return false;
