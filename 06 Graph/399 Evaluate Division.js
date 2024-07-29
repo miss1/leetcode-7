@@ -59,11 +59,57 @@ var calcEquation = function(equations, values, queries) {
  * @param {number[]} values
  * @param {string[][]} queries
  * @return {number[]}
+ * BFS
+ * 先建立graph，再BFS查找两个点之间的路径
+ */
+var calcEquation2 = function(equations, values, queries) {
+  const graph = new Map();
+  for (let i = 0; i < equations.length; i++) {
+    const [n1, n2] = equations[i];
+    if (graph.has(n1)) graph.get(n1).push([n2, values[i]]);
+    else graph.set(n1, [[n2, values[i]]]);
+
+    if (graph.has(n2)) graph.get(n2).push([n1, 1/values[i]]);
+    else graph.set(n2, [[n1, 1/values[i]]]);
+  }
+
+  const bfs = (start, target) => {
+    if (!graph.has(start) || !graph.has(target)) return -1;
+    if (start === target) return 1;
+
+    let current = [[start, 1]], visited = new Set([start]);
+    while (current.length > 0) {
+      let next = [];
+      for (let [node, val] of current) {
+        for (let [n, v] of graph.get(node)) {
+          if (visited.has(n)) continue;
+          if (n === target) return val * v;
+          visited.add(n);
+          next.push([n, val * v]);
+        }
+      }
+      current = next;
+    }
+    return -1;
+  };
+
+  const res = [];
+  for (let [s, e] of queries) {
+    res.push(bfs(s, e));
+  }
+  return res;
+};
+
+/**
+ * @param {string[][]} equations
+ * @param {number[]} values
+ * @param {string[][]} queries
+ * @return {number[]}
  * 带权 Union-Find
  * 建立Union-Find，让被除数作为root，并且记录每个点到root的weight(root的倍数，root乘以多少会等于该node)，eg: a/b=3, b为root，a的weight为3
  * 对与c/d, 如果c和d在有同一个根节点，c/d = c到root的weight/d到root的weight
  */
-var calcEquation2 = function(equations, values, queries) {
+var calcEquation3 = function(equations, values, queries) {
   let map = new Map;
   const find = function(root) {
     if (!map.has(root)) map.set(root, [root, 1]);
