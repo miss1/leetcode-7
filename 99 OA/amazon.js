@@ -42,6 +42,7 @@ function maxAverageStockPrice(stockPrice, k) {
 console.log(maxAverageStockPrice([1,2,7,7,4,3,6], 3)); // 14
 
 /**
+ * 3016
  * 九宫格
  * 设计手机九宫格，将26个字母放到九宫格中，每一个最多三个字母。要求给出的字符串能够通过最少的点击次数打出来。返回这个最少点击次数
  * Solve: 贪心，先遍历text，统计出每个字母出现的次数，再按次数排序，尽可能的把次数多的字母放到每个按钮的第一个位置
