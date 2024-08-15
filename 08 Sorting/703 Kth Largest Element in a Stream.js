@@ -66,7 +66,7 @@ var KthLargest2 = function(k, nums) {
 /**
  * @param {number} val
  * @return {number}
- * O(1)
+ * O(logn)
  */
 KthLargest2.prototype.add = function(val) {
   this.queue.enqueue(val);
