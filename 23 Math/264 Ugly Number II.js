@@ -20,3 +20,32 @@ var nthUglyNumber = function(n) {
   }
   return arr[n - 1];
 };
+
+/**
+ * @param {number} n
+ * @return {number}
+ * PriorityQueue, 从1开始，每次dequeue的数乘以2，3，5存入queue中，如果有重复的数，则不用enqueue
+ * time: O(nlogn)
+ * space: O(n)
+ */
+var nthUglyNumber2 = function(n) {
+  const pq = new PriorityQueue({compare: (a, b) => a - b});
+  pq.enqueue(1);
+  let res = 0, set = new Set([1]);
+  for (let i = 1; i <= n; i++) {
+    res = pq.dequeue();
+    if (!set.has(res * 2)) {
+      pq.enqueue(res * 2);
+      set.add(res * 2);
+    }
+    if (!set.has(res * 3)) {
+      pq.enqueue(res * 3);
+      set.add(res * 3);
+    }
+    if (!set.has(res * 5)) {
+      pq.enqueue(res * 5);
+      set.add(res * 5);
+    }
+  }
+  return res;
+};
