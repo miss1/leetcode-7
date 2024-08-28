@@ -42,6 +42,9 @@
 let queue = new PriorityQueue({compare: (a, b) => b - a});
 queue.enqueue(1);  // logn
 queue.dequeue();  // logn
+queue.size()
+queue.front()
+queue.back()
 
 const numbers = [3, -2, 5, 0, -1, -5, 4];
 const pq = PriorityQueue.fromArray(numbers, (a, b) => a - b);  // O(n)
