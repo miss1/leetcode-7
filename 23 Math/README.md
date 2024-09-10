@@ -17,6 +17,7 @@ Assuming the size of the array is n
 # greatest common divisor of x and y（最大公约数）
 
 ```
+// O(log(min(a, b)))
 const gcd = function(a, b) {
     if (b === 0) return a;
     return gcd(b, a % b);
