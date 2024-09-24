@@ -51,3 +51,42 @@ var strStr2 = function(haystack, needle) {
   }
   return -1;
 };
+
+
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ * KMP
+ */
+var strStr3 = function(haystack, needle) {
+  const lps = [0];
+  let len = 0, i = 1;
+  while (i < needle.length) {
+    if (needle[i] === needle[len]) {
+      lps[i] = ++len;
+      i++;
+    } else {
+      if (len === 0) {
+        lps[i] = 0;
+        i++
+      } else {
+        len = lps[len - 1];
+      }
+    }
+  }
+
+  let x = 0, y = 0;
+  while (x < haystack.length) {
+    if (haystack[x] === needle[y]) {
+      x++;
+      y++;
+    } else {
+      if (y === 0) x++;
+      else y = lps[y - 1];
+    }
+    if (y >= needle.length) return x - needle.length;
+  }
+
+  return -1;
+};
