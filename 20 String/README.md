@@ -47,11 +47,19 @@ Pattern Searching
 * j !== 0, j = lps[j - 1], 继续比较
 * O(n), n = txt.length
 
-### Rolling Hash
-
-
 ### Rotate String - 796
 假设string可以头尾相连，怎么判断一个string旋转之后等于另一个string
 * A = str1 + str1, 如果str2存在于A中，则说明相等
 * KMP Algorithm for Pattern Searching
+
+### Palindrome - 回文
+判断是否是回文
+* 双指针指向头尾，进行比较
+* 125
+
+字符串s, 找出以s[0]开头的最长回文
+* 将s翻转得到s1
+* 找到字符串t, t是s中的prefix，并且t是s1中的suffix，且t的长度最长，则t是最长的回文串
+* 214
+
 
